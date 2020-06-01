@@ -49,4 +49,15 @@ int open(const char *, int, ...)                                \
   __attribute__((alias("__nosync_" #open)));                    \
 
 OPEN(open)
+
+// https://github.com/stewartsmith/libeatmydata/commit/1d06f46cda6333fd03d5175c1e334119ee394fcb
+/*
+ * Musl libc does this in `fcntl.h`:
+ *
+ *    #define open64 open
+ *
+ * It's hard to detect this situation, but we can avoid a compile failure
+ * by undefining it.
+ */
+#undef open64
 OPEN(open64)
