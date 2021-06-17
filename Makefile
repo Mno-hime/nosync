@@ -11,7 +11,7 @@ nosync.so: $(OBJS)
 
 install: nosync.so
 	install -d $(libdir)/nosync
-	install -p $< $(libdir)/nosync/
+	install -p nosync.so $(libdir)/nosync/
 
 clean:
 	@rm -f $(OBJS) nosync.so
