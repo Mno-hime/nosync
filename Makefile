@@ -7,7 +7,7 @@ nosync.so: $(OBJS)
 	-if [ "`uname -s`" = "OpenBSD" ]; then \
 	  $(CC) -shared -fPIC -lpthread $(CFLAGS) -o $@ $+; \
 	else \
-	  $(CC) -shared -fPIC -ldl -lpthread $(CFLAGS) -o $@ $+; \
+	  $(CC) -shared -fPIC $(CFLAGS) -o $@ $+ -ldl -lpthread; \
 	fi
 
 %.o: %.c
