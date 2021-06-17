@@ -10,8 +10,7 @@ nosync.so: $(OBJS)
 	$(CC) -c -fPIC $(CFLAGS) -o $@ $+
 
 install: nosync.so
-	install -d $(libdir)/nosync
-	install -p nosync.so $(libdir)/nosync/
+	install -p nosync.so $(libdir)
 
 clean:
 	@rm -f $(OBJS) nosync.so
