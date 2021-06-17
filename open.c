@@ -25,6 +25,11 @@
    assumes that open is called before the process goes multi-threaded. */
 static int dlsym_pending;
 
+// FreeBSD does not support O_DSYNC
+#ifndef O_DSYNC
+#define O_DSYNC 0
+#endif
+
 #define OPEN(open)                                              \
                                                                 \
 int __nosync_ ## open(const char *path, int flags, mode_t mode) \
