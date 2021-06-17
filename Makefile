@@ -4,7 +4,11 @@ OBJS = fsync.o open.o
 CFLAGS = -O2 -g
 
 nosync.so: $(OBJS)
-	$(CC) -shared -fPIC -ldl -lpthread $(CFLAGS) -o $@ $+
+	-if [ "`uname -s`" = "OpenBSD" ]; then \
+	  $(CC) -shared -fPIC -lpthread $(CFLAGS) -o $@ $+; \
+	else \
+	  $(CC) -shared -fPIC -ldl -lpthread $(CFLAGS) -o $@ $+; \
+	fi
 
 %.o: %.c
 	$(CC) -c -fPIC $(CFLAGS) -o $@ $+
